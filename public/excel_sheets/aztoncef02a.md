@@ -1,0 +1,10 @@
+|                          |                                                                                      |                   |           |                                |           |         |
+| ------------------------ | ------------------------------------------------------------------------------------ | ----------------- | --------- | ------------------------------ | --------- | ------- |
+|                          | Subjects with [[objective response\|response\|clinical<br>benefit\|disease control]] | Adjusted rate (%) |           | Comparison of treatment groups |           |         |
+|                          |                                                                                      |                   |           |                                |           |         |
+| Group                    | Number (%)                                                                           | Estimate          | <<x>>% CI | Odds ratio                     | <<x>>% CI | p-value |
+| AZD1 <<low dose>> N=xxx  | xx (xx.x)                                                                            | xx.x              | x.x, x.x  | x.x                            | x.x, x.x  | 0.xxx   |
+|                          |                                                                                      |                   |           |                                |           |         |
+| AZD2 <<high dose>> N=xxx | xx (xx.x)                                                                            | xx.x              | x.x, x.x  | x.x                            | x.x, x.x  | 0.xxx   |
+| Control N=xxx            | xx (xx.x)                                                                            | xx.x              | x.x, x.x  |                                |           |         |
+| …                        |                                                                                      |                   |           |                                |           |         |

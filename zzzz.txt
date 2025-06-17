@@ -1,0 +1,34 @@
+Simplicity and Consistency
+Display macro with flexible output dataset modification
+Open template code with multiple utility macros
+      <Typography variant="body1" sx={{ color: '#444', fontSize: 18, lineHeight: 1.7 }}>
+        Our efficacy macros are designed to <b>balance stability and flexibility</b>.<br />
+        You can easily switch between standardized and complex outputs, ensuring both <b>consistency</b> and <b>customization</b> for your needs.
+      </Typography>
+
+
+
+      m_t_aztoncef04
+m_t_aztoncef05
+m_t_aztoncef02a
+m_t_aztoncef02b
+Etc.
+
+
+m_u_effcount
+m_u_cox_logrank
+m_u_km
+m_u_binom_cpgrp
+m_u_binom_odds
+Etc. 
+
+
+Efficiency：
+Short learning curve 
+Saving time for one-side TLF generation (75%)
+Less coding.
+Tlf titles and footnotes doc is easy to be maintained.
+Compliance：
+Standardized datasets for QC
+Adherence to AZSOL  
+Following naming convention standard for TLFs
