@@ -120,7 +120,7 @@ const OGEMBenefitSlide: React.FC<{ theme: any }> = ({ theme }) => {
                   <List sx={{ py: 1 }}>
                     {[
                       "Short learning curve",
-                      "Saving time for one-side TLF generation (75%)",
+                      "Saving time for one-side TLF generation",
                       "Less coding",
                       "TLF titles and footnotes doc is easy to be maintained"
                     ].map((item, index) => (

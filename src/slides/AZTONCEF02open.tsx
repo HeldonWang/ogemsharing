@@ -200,18 +200,18 @@ run;
                         | Control N=xxx            | xx (xx.x)                                | xx.x              | x.x, x.x  |                                |           |         |
                         | …                        |                                          |                   |           |                                |           |         |`;
                         
-                        const markdownTable2 = `|                    | Relative risk |            | Risk difference |            |         |
-                        | ------------------ | ------------- | ---------- | --------------- | ---------- | ------- |
-                        | Group              | Estimate      | <<x>>% CI  | Estimate        | <<x>>% CI  | p-value |
-                        | AZD1 <<low dose>>  | xx.x          | xx.x, xx.x | xx.x            | xx.x, xx.x | 0.xxx   |
-                        | N=xxx              |               |            |                 |            |         |
-                        |                    |               |            |                 |            |         |
-                        | AZD2 <<high dose>> | xx.x          | xx.x, xx.x | xx.x            | xx.x, xx.x | 0.xxx   |
-                        | N=xxx              |               |            |                 |            |         |
-                        |                    |               |            |                 |            |         |
-                        | Control            |               |            |                 |            |         |
+                        const markdownTable2 = `|                    | Relative risk |            | Risk difference |            |   |      |
+                        | ------------------ | ------------- | ---------- | --------------- | ---------- | ------- |  |
+                        | Group              | Estimate      | <<x>>% CI  | Estimate        | <<x>>% CI  | <<x>>% CI  | p-value |
+                        | AZD1 <<low dose>>  | xx.x          | xx.x, xx.x | xx.x            | xx.x, xx.x | xx.x, xx.x | 0.xxx  |
+                        | N=xxx              |               |            |                 |            |            |         |
+                        |                    |               |            |                 |            |            |         |
+                        | AZD2 <<high dose>> | xx.x          | xx.x, xx.x | xx.x            | xx.x, xx.x | xx.x, xx.x |0.xxx  |
+                        | N=xxx              |               |            |                 |            |            |         |
+                        |                    |               |            |                 |            |            |         |
+                        | Control            |               |            |                 |            |            |
                         | N=xxx              |               |            |
-                        | …                  |               |            |                 |            |         |`;
+                        | …                  |               |            |                 |            |         | |`;
                         
                         const highlightMap = [
                           {
@@ -232,7 +232,7 @@ run;
                           {
                             code: 'cmh',
                             table: 2,
-                            cols: [1, 2, 3, 4, 5], // ef02b第2-6列
+                            cols: [1, 2, 3, 4, 5, 6], // ef02b第2-6列
                           },
                         ];
 
