@@ -1,186 +1,78 @@
 # OGEM Project Presentation Script
 ## Oncology Generic Efficacy Macro System
 
-### Introduction
-Good morning/afternoon everyone. I'm [Your Name], and today I'm excited to present our OGEM project - the Oncology Generic Efficacy Macro system. This is a significant advancement in how we handle oncology efficacy analysis in clinical trials. Our system represents a breakthrough in standardizing and automating the analysis of oncology clinical trial data, making it more efficient, consistent, and reliable.
-
 ### Slide 1: Title Slide
-Welcome to our presentation on the OGEM project. This system has been developed to address the critical challenges we face in oncology clinical trial analysis. Today, I'll walk you through how this innovative solution is transforming our approach to efficacy analysis in clinical trials.
+Hello everyone. I'm Han, from China Onco programming team, and today I will introduce efficacy table part of our O-GEM project. Here is the core members of O-GEM project. As you all know nearly 70% safety outputs has been covered by O-GEM. It has saved lots of resource for China onco programming team.Therefore, improving the efficacy part will further help programmers save time.
+Before we walk through the efficacy tables macros, let me briefly recapture the safety part and basic working flow of O-GEM. As you can see,
 
 ### Slide 2: Overview of TLF Process
-Let me start by giving you an overview of our TLF (Table, Listing, and Figure) process. In clinical trials, we need to ensure that our efficacy analyses are:
-- Consistent across studies
-- Compliant with regulatory requirements
-- Efficiently produced
-- Easily maintainable
-- Reproducible
-
-This is where our OGEM system comes into play. The traditional process of creating efficacy analyses is often:
-- Time-consuming
-- Prone to errors
-- Inconsistent across studies
-- Difficult to maintain
-
-Our OGEM system addresses these challenges by providing a standardized framework for:
-- Data analysis
-- Table generation
-- Quality control
-- Documentation
+Before we use the macros, we need first to setup the environment. Need to copy all the contents of the macros to the study folder, and update the localsetup file so that we could call all the ogem macros. And then, we need to set up m_u_popn. This is for dummy all the group header we need in the table and calculate the related patient numbers. The next document we need is sth like TLF trackers. This can be obtained directly from MOSAIC and we have a code for it to be transfered to titles sas dataset. It will be used to get titles and footnotes of the outputs. After all these staff is ready. We could call the display macro the generate related outputs. 
 
 ### Slide 3: OncoCore Efficacy Tables
-Now, let me show you our OncoCore Efficacy Tables. These tables are the foundation of our analysis system, providing:
-- Standardized efficacy endpoints
-- Pre-defined statistical methodologies
-- Consistent formatting across studies
-- Automated quality checks
-- Comprehensive documentation
+Alright, let me first walk you through the core efficacy tables, which are the foundation and main targets of our analysis macros.
 
-The key features of these tables include:
-- Response rate analyses
-- Progression-free survival
-- Overall survival
-- Time to progression
-- Duration of response
+We’ve categorized the efficacy tables into four groups based on their statistical characteristics:
 
-Each table is designed to:
-- Meet regulatory requirements
-- Follow industry best practices
-- Ensure consistency
-- Facilitate review and approval
+1. **Kaplan-Meier related tables (CAM-related):**  
+   These include survival analysis tables, with the most common example being the PFS (Progression-Free Survival) summary table.
+
+2. **Ratio-related tables:**  
+   These cover tables that report proportions or response rates, such as objective response rate (ORR).
+
+3. **Time-to-event related tables:**  
+   This group includes endpoints like time to subsequent therapy, time to discontinuation, and time to death.
+
+4. **Other tables:**  
+   For example, the best overall response and duration of response. These share some similarities with both KM-related and ratio-related tables but are handled slightly differently.
 
 ### Slide 4: OGEM Efficacy Macros
-Let me introduce you to the heart of our system - the OGEM Efficacy Macros. These macros are designed to:
-- Automate common efficacy analyses
-- Ensure consistency across studies
-- Reduce programming time
-- Minimize errors
-- Improve quality control
+Now, compared to the safety tables, the efficacy tables are usually more complex and more flexible, since different studies may have different endpoints, comparison strategies, and statistical methods.
 
-The beauty of these macros is their flexibility while maintaining standardization. They include:
-- Parameter validation
-- Error checking
-- Logging capabilities
-- Documentation generation
-- Version control
+To balance simplicity and flexibility, we designed two approaches for generating these tables:
 
-Key benefits include:
-- Reduced programming time by up to 70%
-- Decreased error rates by 90%
-- Consistent output across studies
-- Easy maintenance and updates
-- Improved quality control
+For standard outputs, the user can simply use the display macro directly. This makes it very easy and efficient to produce standard tables that follow the predefined formats.
+
+For more complex situations, where more customization or additional logic is needed, we encourage users to utilize a set of utility macros. These utility macros provide greater flexibility to handle complex conditions and specific study requirements.
+
+Thanks to the design structure of our macros — where the display macro is built upon the utility macros, supportive macros, and analysis macros — users can easily switch between these two methods depending on their needs. This layered structure makes both simple and complex table generation much more manageable.
 
 ### Slide 5: OGEM Code Demo
-Let me demonstrate how these macros work in practice. I'll show you:
-- How to implement the macros
-- The key parameters and options
-- Real-world examples of their application
-- Best practices for usage
-- Troubleshooting tips
+Now let’s take a look at how the two methods work in practice.
 
-The implementation process includes:
-1. Setting up the environment
-2. Configuring parameters
-3. Running the analysis
-4. Reviewing results
-5. Generating documentation
+On the left side, we have an example using the display macro for generating a standard output.
+Here, for example, we are calling the display macro for the PFS summary table. This macro integrates all the necessary functions and internally calls the relevant analysis macros, so the user only needs to provide minimal input. The entire table can be produced with just this single macro call.
+On the right side, we see an example using the utility macros directly to build the same PFS summary table step by step.
+We have m_u_popn to handle the header section,
+EFFCOUNT for frequency counts, KM for survival median and cox_logrank for hazard ratio and p-value calculation.
+By providing both methods — the display macro for simplicity, and the utility macros for flexibility — our macro system allows users to achieve both accurate, flexible, and consistent analysis outputs, depending on the complexity of their needs. One more thing, you can see the length of the code and comprehension of the code are quite similar. So they are both easy to understand and maintain.
+
 
 ### Slides 6-8: AZTONCEF04 Examples
-Now, let me walk you through some real-world applications using the AZTONCEF04 study. I'll show you:
-- How we implemented the macros
-- The results we achieved
-- The time savings we realized
-- Challenges we overcame
-- Lessons learned
+Now let’s take a closer look at how it works. Like I mentioned, the display macro for the 04 PFS summary table is basically built by combining several utility macros — u_km, u_effcount, and u_cox_log — and their names are quite straightforward.
+Different utility macros are used for different parts of the table.
 
-Key achievements include:
-- 60% reduction in programming time
-- 95% reduction in errors
-- Consistent output across all analyses
-- Improved review process
-- Better documentation
+Here is a example of the 04 shell and related code. On the left you can see the table shell which defines the layout of the output, and on the right is how the display macro works behind the scenes. When setting up the display macro, we first provide some basic information, like the input dataset, population flag, treatment group variables, and the endpoint variable. Then, each part of the macro takes care of different sections of the table: u_effcount calculates the frequencies for different conditions, u_cox_log performs the comparison between treatment groups and calculates hazard ratios and p-values, and u_km handles the survival analysis, like the median PFS, quartiles, and survival rates at specific timepoints. At the end, we also include the reporting macro index to make sure the final output follows the standard format. So with this structure, the user only needs to input minimal information, and the display macro automatically pulls everything together to generate a complete, accurate, and standardized PFS summary table.
+
+And then we have the open code template, which is designed to handle more flexible situations. For example, as you can see in the last two sections of the table, there’s a description part and an additional frequency calculation. In the display macro, it’s not so easy to run multiple frequency calculations unless we modify the code inside the macro. But with the open code approach, we can handle this very easily. We simply add another call to effcount at the end of the macro, combine all the analysis datasets together, and we get exactly the dataset we need. We can also call multiple analysis macros, or even call the same macro multiple times with different parameters to generate similar outputs for different conditions, and in the end, we can easily produce multiple tables as needed.
+
 
 ### Slides 9-11: AZTONCEF02 Examples
-Let me share another example from the AZTONCEF02 study. This will show you:
-- Different applications of our macros
-- How we handled specific study requirements
-- The consistency we maintained across analyses
-- Customization options
-- Integration with other systems
+Another core table that’s built on core utility macros is EF02, which is for response rate related tables. Similar to what we just saw with the PFS summary table, the display macro is also made up of three main utility macros. One is binom_cp_grp, another is binom_adjrate, which handles adjusted rate, and the most complicated binom_odds, which takes care of odds ratios and related statistics. Just like before, each part takes care of its own section in the table: some handle the frequency counts, some handle relative risk estimation, and some handle the comparisons between groups. So basically, the structure is very similar — the display macro coordinates all these utility macros behind the scenes to produce a complete response rate summary table automatically.
 
-The results demonstrate:
-- Successful implementation in complex studies
-- Handling of special cases
-- Integration with existing processes
-- Scalability of the system
-- Future potential
+So inside display macro, we have a few main parts: first, the basic information setup, then the response rate and adjusted rate calculation, and also the confidence interval calculation, which is controlled by the CI index parameter. For odds ratios, we have an odds option to decide whether we want to include the odds ratio or not. For other statistics like relative risk and risk difference, we can use the CMH option to control whether to calculate them. And for all these calculations, we can easily customize things like the alpha level, the number of decimal places for p-values, whether it's one-sided or two-sided p-values, and also the decimal places for confidence intervals. So overall, the macro is quite flexible and allows users to adjust most of the key statistical settings as needed.
+
+The response rate related tables are more flexible, so the open code template is more suitable for this kind of table. We can easily add more calculations, like the relative risk, risk difference and also remove some of the calculations if we don’t need them. For example sometimes we may need two different confidence intervals. This is very hard for display macro.
+For the binom_cp_grp and adjust rate part, it quite easy to understand with command parameter. And for binom_odds, since odds ratio, relative risk, and risk difference are all related to comparisons between different groups, we combined them into one utility macro. So inside binom_odds, you can control whether you want to calculate relative risk or risk difference, and you can also set options for the confidence limit type, how to handle missing values, and even customize the wording for missing values. And when we have more than two treatment groups, we can only do pairwise comparisons between two groups at a time, so we need to call m_u_binom_odds multiple times, once for each pairwise comparison.
 
 ### Slide 12: OGEM Benefits
-Let me summarize the key benefits of our OGEM system:
-- Significant time savings in programming
-- Reduced risk of errors
-- Consistent output across studies
-- Easy maintenance and updates
-- Improved quality control
-- Better documentation
-- Enhanced collaboration
-- Increased efficiency
+So I won’t spend too much time talking about the obvious benefits here, because as you can see, our efficacy macros are quite straightforward, both for the display macros and the utility macros. Of course, they save a lot of programming time since there’s much less coding required, and at the same time, with these consistent macros, we can make sure all the outputs follow the same format and the same calculation method across different studies.
 
-The impact on our efficiency has been remarkable:
-- 70% reduction in programming time
-- 90% reduction in errors
-- 100% consistency in output
-- 50% reduction in review time
-- 80% improvement in documentation quality
 
 ### Slide 13: Future Plans
-Looking ahead, I'm excited about our future developments:
-- Enhanced macro capabilities
-- Additional statistical methods
-- Integration with new technologies
-- Expanded documentation and training
-- Improved user interface
-- Advanced analytics capabilities
-- Machine learning integration
-- Cloud-based deployment
-
-Our roadmap includes:
-1. Short-term improvements
-2. Medium-term enhancements
-3. Long-term innovations
-4. Continuous feedback integration
-5. Regular updates and maintenance
-
-### Slide 14: Conclusion
-To conclude, our OGEM system represents a significant step forward in oncology efficacy analysis. It's not just about automation - it's about:
-- Improving quality
-- Ensuring consistency
-- Saving time
-- Reducing errors
-- Enhancing collaboration
-- Supporting innovation
-- Driving efficiency
-- Enabling better decision-making
-
-I'm confident that this system will continue to benefit our clinical trial programs and help us deliver better outcomes for patients.
+Of course, we still have a long way to go. We need to continue developing macros for figures and listings in the efficacy part. We also need more trials or testing to further verify and ensure the robustness of our macros under different scenarios. And recently, we just released OGEM version 2, which now includes not only  advanced safety modules but also efficacy tables. So overall, it's still evolving and getting more complete.
 
 ### Q&A Session
 I'm happy to answer any questions you might have about:
-- Technical implementation
-- Usage guidelines
-- Best practices
-- Future developments
-- Integration options
-- Training requirements
-- Support services
-- Success metrics
-
-### Contact Information
-For more information, please contact:
-- Email: [Your Email]
-- Phone: [Your Phone]
-- Website: [Your Website]
-- Documentation: [Documentation Link]
 
 ---
 

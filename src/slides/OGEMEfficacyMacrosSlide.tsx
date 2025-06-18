@@ -112,7 +112,14 @@ const OGEMEfficacyMacrosSlide: React.FC<{ theme: any }> = ({ theme }) => {
   return (
     <Slide title="O-GEM Efficacy Macros">
       <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, alignItems: 'flex-start', justifyContent: 'center', height: '100%', width: '100%' }}>
-        {/* 左侧：大文本框+天平 */}
+        {/* 左侧内容框 */}
+        <Box sx={{ flex: 1, minWidth: 320, mr: { xs: 0, md: 4 }, mt: { xs: 4, md: 0 }, display: 'flex', flexDirection: 'column', alignItems: 'stretch', justifyContent: 'flex-start' }}>
+          <Paper elevation={3} sx={{ p: 3, borderRadius: 3, bgcolor: '#f7f7f7', minHeight: 220, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+            {rightContent}
+          </Paper>
+        </Box>
+
+        {/* 右侧：大文本框+天平 */}
         <Box sx={{ flex: 1.2, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minWidth: 340, height: '100%' }}>
           {/* 上方大文本框区 */}
           <Box sx={{ display: 'flex', gap: 4, mb: 2, width: '100%', justifyContent: 'center' }}>
@@ -138,7 +145,7 @@ const OGEMEfficacyMacrosSlide: React.FC<{ theme: any }> = ({ theme }) => {
             </Paper>
           </Box>
           {/* 天平动画区，上移并可点击回正 */}
-          <Box sx={{ position: 'relative', width: { xs: 320, md: 600 }, height: { xs: 260, md: 340 }, mt: 0, mb: 2, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <Box sx={{ position: 'relative', width: '100%', height: 240, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <Box sx={{ position: 'relative', left: 0, top: '30%', transform: 'translateY(-50%)', width: 340, height: 180, cursor: 'pointer' }} onClick={handleBalanceClick}>
               {/* 天平杆动画 */}
               <motion.div
@@ -153,10 +160,8 @@ const OGEMEfficacyMacrosSlide: React.FC<{ theme: any }> = ({ theme }) => {
                 <Box sx={{ position: 'absolute', right: 18, top: 18, width: 80, height: 32, bgcolor: '#fff', border: '3px solid #444', borderRadius: '0 0 40px 40px', borderTop: 'none', boxShadow: '0 2px 8px #0001', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }} />
               </motion.div>
               {/* 天平底座 */}
-              <Box sx={{ position: 'absolute', left: '50%', top: 120, transform: 'translateX(-50%)', width: 90, height: 60, bgcolor: '#fff', border: '3px solid #444', borderRadius: '0 0 30px 30px', zIndex: 1, boxShadow: '0 2px 8px #0002' }}>
-                <Box sx={{ position: 'absolute', left: '50%', top: 10, transform: 'translateX(-50%)', width: 36, height: 36, borderRadius: '50%', border: '3px solid #444', bgcolor: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <Box sx={{ width: 18, height: 6, bgcolor: '#bbb', borderRadius: 2 }} />
-                </Box>
+              <Box sx={{ position: 'absolute', left: '50%', top: 10, transform: 'translateX(-50%)', width: 36, height: 36, borderRadius: '50%', border: '3px solid #444', bgcolor: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <Box sx={{ width: 18, height: 6, bgcolor: '#bbb', borderRadius: 2 }} />
               </Box>
             </Box>
           </Box>
@@ -164,12 +169,6 @@ const OGEMEfficacyMacrosSlide: React.FC<{ theme: any }> = ({ theme }) => {
           <Typography variant="h3" sx={{ fontWeight: 700, color: '#444', mt: 2, fontFamily: 'Comic Sans MS, Comic Sans, cursive', textShadow: '1px 2px 8px #fff8' }}>
             Balancing Simplicity and Complexity
           </Typography>
-        </Box>
-        {/* 右侧内容框 */}
-        <Box sx={{ flex: 1, minWidth: 320, ml: { xs: 0, md: 4 }, mt: { xs: 4, md: 0 }, display: 'flex', flexDirection: 'column', alignItems: 'stretch', justifyContent: 'flex-start' }}>
-          <Paper elevation={3} sx={{ p: 3, borderRadius: 3, bgcolor: '#f7f7f7', minHeight: 220, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-            {rightContent}
-          </Paper>
         </Box>
       </Box>
     </Slide>

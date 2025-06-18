@@ -278,108 +278,6 @@ const OGEMCodeDemoSlide: React.FC<{ theme: any }> = ({ theme }) => {
           height: '450px',
           mb: 4
         }}>
-          {/* Left code window */}
-          <Box sx={{ width: '50%' }}>
-            <Typography variant="subtitle2" sx={{ 
-              fontSize: '1.2rem', 
-              mb: 1,
-              color: theme.palette.primary.main,
-              fontWeight: 600
-            }}>
-              Template Code with Utility Macros
-            </Typography>
-            <Card sx={{ 
-              height: '100%',
-              bgcolor: '#181c24',
-              position: 'relative',
-              borderRadius: 1,
-              overflow: 'hidden'
-            }}>
-              {/* Vertical scroll indicator */}
-              <Box sx={{ 
-                position: 'absolute',
-                right: 5,
-                top: '15%',
-                height: '70%',
-                width: 24,
-                zIndex: 10,
-                display: 'flex',
-                justifyContent: 'center'
-              }}>
-                <Box sx={{
-                  height: '100%',
-                  width: 4,
-                  borderRadius: 4,
-                  bgcolor: 'rgba(255,255,255,0.1)',
-                  position: 'relative'
-                }}>
-                  <Box 
-                    sx={{
-                      position: 'absolute',
-                      left: '-5px',
-                      width: 14,
-                      height: 18,
-                      bgcolor: '#666',
-                      borderRadius: 2,
-                      top: `${scrollValue}%`,
-                      transform: 'translateY(-50%)',
-                      cursor: 'pointer',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center'
-                    }}
-                    onMouseDown={(e) => {
-                      const container = e.currentTarget.parentElement;
-                      if (!container) return;
-                      const containerHeight = container.clientHeight;
-                      const handleMouseMove = (moveEvent: MouseEvent) => {
-                        const containerRect = container.getBoundingClientRect();
-                        const y = moveEvent.clientY - containerRect.top;
-                        const percentage = Math.max(0, Math.min(100, (y / containerHeight) * 100));
-                        handleScrollChange(null, percentage);
-                      };
-                      const handleMouseUp = () => {
-                        document.removeEventListener('mousemove', handleMouseMove);
-                        document.removeEventListener('mouseup', handleMouseUp);
-                      };
-                      document.addEventListener('mousemove', handleMouseMove);
-                      document.addEventListener('mouseup', handleMouseUp);
-                    }}
-                  >
-                    <DragIndicatorIcon sx={{ fontSize: '0.6rem', color: '#fff' }} />
-                  </Box>
-                </Box>
-              </Box>
-              
-              {/* Code content */}
-              <Box sx={{ 
-                height: '100%',
-                overflow: 'auto',
-                scrollbarWidth: 'none',
-                '&::-webkit-scrollbar': { display: 'none' }
-              }}
-              ref={(el: HTMLDivElement | null) => {
-                if (el) {
-                  const maxScroll = el.scrollHeight - el.clientHeight;
-                  el.scrollTop = (scrollValue / 100) * maxScroll;
-                }
-              }}
-              >
-                <CodeMirror
-                  value={leftSasCode}
-                  height="100%"
-                  theme="dark"
-                  extensions={[StreamLanguage.define(sas)]}
-                  editable={false}
-                  style={{
-                    fontSize: '0.82rem',
-                    backgroundColor: '#181c24'
-                  }}
-                />
-              </Box>
-            </Card>
-          </Box>
-
           {/* Right code window */}
           <Box sx={{ width: '50%' }}>
             <Typography variant="subtitle2" sx={{ 
@@ -469,6 +367,108 @@ const OGEMCodeDemoSlide: React.FC<{ theme: any }> = ({ theme }) => {
               >
                 <CodeMirror
                   value={rightSasCode}
+                  height="100%"
+                  theme="dark"
+                  extensions={[StreamLanguage.define(sas)]}
+                  editable={false}
+                  style={{
+                    fontSize: '0.82rem',
+                    backgroundColor: '#181c24'
+                  }}
+                />
+              </Box>
+            </Card>
+          </Box>
+
+          {/* Left code window */}
+          <Box sx={{ width: '50%' }}>
+            <Typography variant="subtitle2" sx={{ 
+              fontSize: '1.2rem', 
+              mb: 1,
+              color: theme.palette.primary.main,
+              fontWeight: 600
+            }}>
+              Template Code with Utility Macros
+            </Typography>
+            <Card sx={{ 
+              height: '100%',
+              bgcolor: '#181c24',
+              position: 'relative',
+              borderRadius: 1,
+              overflow: 'hidden'
+            }}>
+              {/* Vertical scroll indicator */}
+              <Box sx={{ 
+                position: 'absolute',
+                right: 5,
+                top: '15%',
+                height: '70%',
+                width: 24,
+                zIndex: 10,
+                display: 'flex',
+                justifyContent: 'center'
+              }}>
+                <Box sx={{
+                  height: '100%',
+                  width: 4,
+                  borderRadius: 4,
+                  bgcolor: 'rgba(255,255,255,0.1)',
+                  position: 'relative'
+                }}>
+                  <Box 
+                    sx={{
+                      position: 'absolute',
+                      left: '-5px',
+                      width: 14,
+                      height: 18,
+                      bgcolor: '#666',
+                      borderRadius: 2,
+                      top: `${scrollValue}%`,
+                      transform: 'translateY(-50%)',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center'
+                    }}
+                    onMouseDown={(e) => {
+                      const container = e.currentTarget.parentElement;
+                      if (!container) return;
+                      const containerHeight = container.clientHeight;
+                      const handleMouseMove = (moveEvent: MouseEvent) => {
+                        const containerRect = container.getBoundingClientRect();
+                        const y = moveEvent.clientY - containerRect.top;
+                        const percentage = Math.max(0, Math.min(100, (y / containerHeight) * 100));
+                        handleScrollChange(null, percentage);
+                      };
+                      const handleMouseUp = () => {
+                        document.removeEventListener('mousemove', handleMouseMove);
+                        document.removeEventListener('mouseup', handleMouseUp);
+                      };
+                      document.addEventListener('mousemove', handleMouseMove);
+                      document.addEventListener('mouseup', handleMouseUp);
+                    }}
+                  >
+                    <DragIndicatorIcon sx={{ fontSize: '0.6rem', color: '#fff' }} />
+                  </Box>
+                </Box>
+              </Box>
+              
+              {/* Code content */}
+              <Box sx={{ 
+                height: '100%',
+                overflow: 'auto',
+                scrollbarWidth: 'none',
+                '&::-webkit-scrollbar': { display: 'none' }
+              }}
+              ref={(el: HTMLDivElement | null) => {
+                if (el) {
+                  const maxScroll = el.scrollHeight - el.clientHeight;
+                  el.scrollTop = (scrollValue / 100) * maxScroll;
+                }
+              }}
+              >
+                <CodeMirror
+                  value={leftSasCode}
                   height="100%"
                   theme="dark"
                   extensions={[StreamLanguage.define(sas)]}

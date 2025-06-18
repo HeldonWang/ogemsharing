@@ -17,13 +17,20 @@ const OverviewTLFProcessSlide: React.FC<{ theme: any }> = ({ theme }) => {
   const [imgDims, setImgDims] = useState({ width: 1, height: 1, naturalWidth: 1, naturalHeight: 1 });
   const [popnOpen, setPopnOpen] = useState(false);
   const imgRef = useRef<HTMLImageElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    if (!imgRef.current) return;
-    const rect = imgRef.current.getBoundingClientRect();
+    if (!imgRef.current || !containerRef.current) return;
+    
+    const rect = containerRef.current.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    setMagnifierPos({ x, y });
+    
+    // 修改边界检查逻辑，允许放大镜到达图片边缘
+    const boundedX = Math.max(0, Math.min(x, rect.width));
+    const boundedY = Math.max(0, Math.min(y, rect.height));
+    
+    setMagnifierPos({ x: boundedX, y: boundedY });
   };
 
   const handleImgLoad = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
@@ -36,11 +43,22 @@ const OverviewTLFProcessSlide: React.FC<{ theme: any }> = ({ theme }) => {
     });
   };
 
-  // 计算背景尺寸和位置
-  const scaleX = imgDims.naturalWidth / imgDims.width;
-  const scaleY = imgDims.naturalHeight / imgDims.height;
-  const bgX = (magnifierPos.x * scaleX - MAGNIFIER_SIZE / 2 / MAGNIFIER_ZOOM) * -1;
-  const bgY = (magnifierPos.y * scaleY - MAGNIFIER_SIZE / 2 / MAGNIFIER_ZOOM) * -1;
+  // 计算放大镜背景位置
+  const calculateBackgroundPosition = () => {
+    if (!imgRef.current || !containerRef.current) return { bgX: 0, bgY: 0 };
+    
+    const rect = containerRef.current.getBoundingClientRect();
+    const scaleX = imgDims.naturalWidth / rect.width;
+    const scaleY = imgDims.naturalHeight / rect.height;
+    
+    // 调整背景位置计算，向左偏移
+    const bgX = (magnifierPos.x * scaleX - (MAGNIFIER_SIZE / 2) * scaleX + (MAGNIFIER_SIZE / 2) * MAGNIFIER_ZOOM) * -1;
+    const bgY = (magnifierPos.y * scaleY - (MAGNIFIER_SIZE / 2) * scaleY + (MAGNIFIER_SIZE / 2) * MAGNIFIER_ZOOM) * -1;
+    
+    return { bgX, bgY };
+  };
+
+  const { bgX, bgY } = calculateBackgroundPosition();
 
   return (
     <Slide key="overview-tlf-process" title="Recapture overview - Safety TLF Generation Process">
@@ -123,6 +141,7 @@ const OverviewTLFProcessSlide: React.FC<{ theme: any }> = ({ theme }) => {
           </IconButton>
           {/* 图片和放大镜 */}
           <Box
+            ref={containerRef}
             sx={{ position: 'relative', width: '100%', maxWidth: 540, borderRadius: 2, boxShadow: '0 4px 24px rgba(0,0,0,0.08)' }}
             onMouseMove={magnifierActive ? handleMouseMove : undefined}
             onMouseLeave={magnifierActive ? () => setMagnifierPos({ x: -9999, y: -9999 }) : undefined}
