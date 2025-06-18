@@ -1,12 +1,12 @@
 {
-  "name": "ragsinaz",
+  "name": "ogem",
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "homepage": "https://evinova.github.io/hai-ragsinaz-deck",
+  "homepage": "https://heldonwang.github.io/ogemsharing",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc && vite build && cp -R ./images ./dist/images && cp -R ./excel_sheets ./dist/excel_sheets",
     "build:skip-ts": "vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "predeploy": "npm run build:skip-ts",
