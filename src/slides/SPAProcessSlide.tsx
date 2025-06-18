@@ -309,11 +309,7 @@ const SPAProcessSlide: React.FC<{ theme: any }> = ({ theme }) => {
                     }}
                   >
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                      <Avatar
-                        src="/images/avatar-male.png"
-                        alt="Clinical Scientist"
-                        sx={{ width: 32, height: 32 }}
-                      />
+                      <img src={`${import.meta.env.BASE_URL}images/avatar-male.png`} alt="avatar" style={{ width: 48, height: 48, borderRadius: '50%' }} />
                       <Box>
                         <Typography variant="caption" sx={{ display: 'block', color: 'text.secondary', fontSize: '0.7rem' }}>
                           Clinical Scientist

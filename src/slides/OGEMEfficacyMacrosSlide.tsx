@@ -30,7 +30,7 @@ const OGEMEfficacyMacrosSlide: React.FC<{ theme: any }> = ({ theme }) => {
       </Typography>
       <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', mt: 2 }}>
         <img
-          src="/images/breakdownpic.png"
+          src={`${import.meta.env.BASE_URL}images/breakdownpic.png`}
           alt="Breakdown"
           style={{ maxWidth: '100%', maxHeight: 240, borderRadius: 8, boxShadow: '0 2px 12px #0002', cursor: 'zoom-in', transition: 'box-shadow 0.2s' }}
           onClick={() => setImgOpen(true)}
@@ -38,7 +38,7 @@ const OGEMEfficacyMacrosSlide: React.FC<{ theme: any }> = ({ theme }) => {
       </Box>
       <Dialog open={imgOpen} onClose={() => setImgOpen(false)} maxWidth="xl" PaperProps={{ sx: { bgcolor: '#fff', boxShadow: 'none' } }}>
         <Box sx={{ width: '90vw', height: '90vh', display: 'flex', alignItems: 'center', justifyContent: 'center', bgcolor: '#fff', borderRadius: 2 }} onClick={() => setImgOpen(false)}>
-          <img src="/images/breakdownpic.png" alt="Breakdown Large" style={{ maxWidth: '88vw', maxHeight: '88vh', borderRadius: 8, boxShadow: '0 2px 24px #0008' }} />
+          <img src={`${import.meta.env.BASE_URL}images/breakdownpic.png`} alt="Breakdown Large" style={{ maxWidth: '88vw', maxHeight: '88vh', borderRadius: 8, boxShadow: '0 2px 24px #0008' }} />
         </Box>
       </Dialog>
     </>

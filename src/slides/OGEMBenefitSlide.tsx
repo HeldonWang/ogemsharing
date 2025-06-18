@@ -43,7 +43,7 @@ const OGEMBenefitSlide: React.FC<{ theme: any }> = ({ theme }) => {
             left: 0,
             right: 0,
             bottom: 0,
-            backgroundImage: 'url(/images/benefits.png)',
+            backgroundImage: `url(${import.meta.env.BASE_URL}images/benefits.png)`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             opacity: 0.5,

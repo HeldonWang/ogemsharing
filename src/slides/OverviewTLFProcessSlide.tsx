@@ -148,7 +148,7 @@ const OverviewTLFProcessSlide: React.FC<{ theme: any }> = ({ theme }) => {
           >
             <img
               ref={imgRef}
-              src="/images/tlf-process-flow.png"
+              src={`${import.meta.env.BASE_URL}images/tlf-process-flow.png`}
               alt="TLF Process Flow"
               style={{ width: '100%', borderRadius: 12, display: 'block' }}
               onLoad={handleImgLoad}
@@ -166,7 +166,7 @@ const OverviewTLFProcessSlide: React.FC<{ theme: any }> = ({ theme }) => {
                   borderRadius: '50%',
                   boxShadow: '0 2px 12px rgba(0,0,0,0.18)',
                   border: '2.5px solid #fff',
-                  background: `url(/images/tlf-process-flow.png) no-repeat`,
+                  background: `url(${`${import.meta.env.BASE_URL}images/tlf-process-flow.png`}) no-repeat`,
                   backgroundSize: `${imgDims.width * MAGNIFIER_ZOOM}px ${imgDims.height * MAGNIFIER_ZOOM}px`,
                   backgroundPosition: `${bgX}px ${bgY}px`,
                   zIndex: 9,

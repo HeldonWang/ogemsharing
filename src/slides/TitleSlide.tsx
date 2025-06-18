@@ -240,7 +240,7 @@ const TitleSlide: React.FC<{ theme: any }> = ({ theme }) => {
         }}>
           <Box 
             component="img" 
-            src="/images/AZ_SYMBOL_RGB.png" 
+            src={`${import.meta.env.BASE_URL}images/AZ_SYMBOL_RGB.png`} 
             alt="AstraZeneca Logo"
             sx={{ 
               height: 80,
@@ -249,7 +249,7 @@ const TitleSlide: React.FC<{ theme: any }> = ({ theme }) => {
           />
           <Box 
             component="img" 
-            src="/images/diamond.png" 
+            src={`${import.meta.env.BASE_URL}images/diamond.png`} 
             alt="Diamond Logo"
             sx={{ 
               height: 70,

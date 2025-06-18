@@ -17,7 +17,7 @@ const AZTONCEF04: React.FC<{ theme: any }> = ({ theme }) => {
       }}>
         <Box
           component="img"
-          src="./images/ef04.PNG"
+          src={`${import.meta.env.BASE_URL}images/ef04.PNG`}
           alt="AZTONCEF04 Example"
           sx={{
             maxWidth: '100%',

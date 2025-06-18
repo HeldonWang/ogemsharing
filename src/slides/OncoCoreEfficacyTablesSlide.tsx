@@ -24,7 +24,7 @@ const tableCategories = [
   }
 ];
 
-const excelFilePath = '/excel_sheets/O-GEM efficacy macro dev tracker.xlsx';
+const excelFilePath = `${import.meta.env.BASE_URL}excel_sheets/O-GEM efficacy macro dev tracker.xlsx`;
 const supportedTables = ['AZTONCEF04', 'AZTONCEF02A', 'AZTONCEF14', 'AZTONCEF01'];
 
 const tableDetails: Record<string, string> = {
